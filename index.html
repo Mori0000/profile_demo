@@ -887,6 +887,40 @@
             0%, 100% { box-shadow: 0 0 5px var(--primary-light); }
             50% { box-shadow: 0 0 20px var(--accent); }
         }
+
+        /* 趣味リストのスタイリング */
+        .hobbies-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .hobbies-list li {
+            background: rgba(1, 34, 61, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .hobbies-list li:hover {
+            transform: translateY(-2px);
+            background: rgba(1, 34, 61, 0.5);
+        }
+
+        .hobby-icon {
+            font-size: 1.2rem;
+        }
+
+        .hobby-name {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
     </style>
 </head>
 <body>
@@ -937,25 +971,69 @@
             <img src="demo.png" alt="プロフィール画像">
         </div>
         <div class="about-content">
-            <h2 class="section-title">自己紹介</h2>
+            <h2 class="section-title">About Me</h2>
             <p>豊田工業大学4年の森木勇登です．出身は佐賀県，<h1><span class="highlight">早く地元に帰りたい</span></h1></p>
+            
+            <h3>Hobbies & Interests</h3>
+            <ul class="hobbies-list">
+                <li>
+                    <span class="hobby-icon">🏆</span>
+                    <span class="hobby-name">Hackathons</span>
+                </li>
+                <li>
+                    <span class="hobby-icon">📊</span>
+                    <span class="hobby-name">Kaggle Competitions</span>
+                </li>
+                <li>
+                    <span class="hobby-icon">🏀</span>
+                    <span class="hobby-name">Basketball</span>
+                </li>
+                <li>
+                    <span class="hobby-icon">🎾</span>
+                    <span class="hobby-name">Tennis</span>
+                </li>
+                <li>
+                    <span class="hobby-icon">👨‍🍳</span>
+                    <span class="hobby-name">Cooking</span>
+                </li>
+            </ul>
         </div>
     </section>
 
     <section class="skills" id="skills">
-        <h2 class="section-title">スキル</h2>
+        <h2 class="section-title">Skills</h2>
         <div class="skills-container">
+            <!-- Programming Languages -->
             <div class="skill-box">
-                <div class="skill-icon">🎨</div>
-                <h3 class="skill-title">デザイン</h3>
+                <h3>Programming</h3>
+                <ul>
+                    <li>Python</li>
+                    <li>JavaScript</li>
+                    <li>HTML/CSS</li>
+                    <li>Java</li>
+                </ul>
             </div>
+            
+            <!-- Frameworks & Libraries -->
             <div class="skill-box">
-                <div class="skill-icon">💻</div>
-                <h3 class="skill-title">プログラミング</h3>
+                <h3>Frameworks & Libraries</h3>
+                <ul>
+                    <li>OpenCV</li>
+                    <li>React</li>
+                    <li>Node.js</li>
+                    <li>Express</li>
+                </ul>
             </div>
+            
+            <!-- Tools & Technologies -->
             <div class="skill-box">
-                <div class="skill-icon">📸</div>
-                <h3 class="skill-title">写真撮影</h3>
+                <h3>Tools & Technologies</h3>
+                <ul>
+                    <li>Git</li>
+                    <li>Docker</li>
+                    <li>AWS</li>
+                    <li>Linux</li>
+                </ul>
             </div>
         </div>
     </section>
