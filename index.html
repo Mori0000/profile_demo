@@ -18,6 +18,8 @@
             transform: translate(-50%, -50%);
             transition: transform 0.1s ease;
             opacity: 0.7;
+            filter: blur(0.5px);
+            animation: cursorPulse 2s infinite;
         }
         
         .cursor-follower {
@@ -221,9 +223,7 @@
             bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
-            animation: bounce 2s infinite;
-            opacity: 0;
-            animation: fadeIn 1s forwards 1.5s, bounce 2s infinite 1.5s;
+            animation: none;
         }
 
         .scroll-indicator span {
@@ -233,6 +233,7 @@
             border: 2px solid var(--primary-light);
             border-radius: 50px;
             position: relative;
+            animation: glowPulse 2s infinite;
         }
 
         .scroll-indicator span:before {
@@ -322,6 +323,12 @@
             padding-bottom: 10px;
             color: var(--primary-light);
             text-shadow: 0 0 10px rgba(144, 224, 239, 0.3);
+            background: linear-gradient(45deg, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientFlow 3s ease infinite;
+            background-size: 200% 200%;
         }
 
         .section-title:after {
@@ -356,32 +363,30 @@
             background: linear-gradient(145deg, #013a63, #01223d);
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border-left: 3px solid var(--accent);
             position: relative;
             overflow: hidden;
         }
 
-        .skill-box::before {
+        .skill-box::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(144, 224, 239, 0.1), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-
-        .skill-box:hover::before {
-            transform: translateX(100%);
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(to right, var(--accent), var(--primary-light));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: inherit;
         }
 
         .skill-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            border-left: 3px solid var(--primary-light);
+            transform: translateY(-15px) scale(1.02);
+            background: transparent;
+        }
+
+        .skill-box:hover::after {
+            opacity: 1;
         }
 
         .skill-icon {
@@ -414,6 +419,8 @@
             transition: var(--transition);
             background: linear-gradient(145deg, #013a63, #01223d);
             position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .project-card:hover {
@@ -457,7 +464,8 @@
         }
 
         .project-card:hover .project-img img {
-            transform: scale(1.1);
+            transform: rotateX(10deg) rotateY(-15deg);
+            box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.3);
         }
 
         .project-content {
@@ -641,6 +649,9 @@
             height: 100%;
             pointer-events: none;
             z-index: -1;
+            background: radial-gradient(circle at center, 
+                rgba(144, 224, 239, 0.1) 0%, 
+                transparent 70%);
         }
         
         .particle {
@@ -654,6 +665,8 @@
             animation: float 15s linear infinite;
             animation-delay: var(--delay);
             z-index: -1;
+            filter: blur(1px);
+            mix-blend-mode: screen;
         }
         
         .particle:nth-child(even) {
@@ -863,6 +876,17 @@
             z-index: -1;
             transform: skewX(-15deg);
         }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 5px var(--primary-light); }
+            50% { box-shadow: 0 0 20px var(--accent); }
+        }
     </style>
 </head>
 <body>
@@ -915,7 +939,7 @@
         <div class="about-content">
             <h2 class="section-title">自己紹介</h2>
             <p>豊田工業大学4年の森木勇登です．出身は佐賀県，<h1><span class="highlight">早く地元に帰りたい</span></h1></p>
-`        </div>
+        </div>
     </section>
 
     <section class="skills" id="skills">
@@ -923,3 +947,132 @@
         <div class="skills-container">
             <div class="skill-box">
                 <div class="skill-icon">🎨</div>
+                <h3 class="skill-title">デザイン</h3>
+            </div>
+            <div class="skill-box">
+                <div class="skill-icon">💻</div>
+                <h3 class="skill-title">プログラミング</h3>
+            </div>
+            <div class="skill-box">
+                <div class="skill-icon">📸</div>
+                <h3 class="skill-title">写真撮影</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects" id="projects">
+        <h2 class="section-title">作品</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="project1.jpg" alt="プロジェクト1">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">プロジェクト1</h3>
+                    <p class="project-description">これはプロジェクト1の説明文です。</p>
+                    <a href="#" class="project-link">詳細を見る</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="project2.jpg" alt="プロジェクト2">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">プロジェクト2</h3>
+                    <p class="project-description">これはプロジェクト2の説明文です。</p>
+                    <a href="#" class="project-link">詳細を見る</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="project3.jpg" alt="プロジェクト3">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">プロジェクト3</h3>
+                    <p class="project-description">これはプロジェクト3の説明文です。</p>
+                    <a href="#" class="project-link">詳細を見る</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="section-title">お問い合わせ</h2>
+        <div class="contact-info">
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <h3>メール</h3>
+                <p>example@example.com</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">📞</div>
+                <h3>電話</h3>
+                <p>000-0000-0000</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">🌐</div>
+                <h3>ウェブサイト</h3>
+                <p>www.example.com</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" target="_blank">Twitter</a>
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">GitHub</a>
+        </div>
+        <p class="copyright">&copy; 2024 森木勇登. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // マウス追従エフェクトの改善
+        document.addEventListener('mousemove', (e) => {
+            const cursor = document.querySelector('.cursor');
+            const follower = document.querySelector('.cursor-follower');
+            
+            requestAnimationFrame(() => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                follower.style.left = e.clientX + 'px';
+                follower.style.top = e.clientY + 'px';
+            });
+
+            // ホバー要素の検出
+            const hoverable = e.target.closest('a, button, .skill-box, .project-card');
+            if (hoverable) {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                follower.style.transform = 'translate(-50%, -50%) scale(1.8)';
+            } else {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                follower.style.transform = 'translate(-50%, -50%) scale(1)';
+            }
+        });
+
+        // スクロールアニメーションの追加
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-box, .project-card, .about-img, .about-content')
+            .forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(50px)';
+                el.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                observer.observe(el);
+            });
+    </script>
+</body>
+</html>
