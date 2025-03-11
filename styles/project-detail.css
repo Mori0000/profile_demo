@@ -1,0 +1,143 @@
+/* プロジェクト詳細ページのスタイル */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.project-header {
+    background: linear-gradient(to right, var(--primary), var(--primary-light));
+    padding: 4rem 0;
+    color: var(--text);
+}
+
+.project-meta {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.project-section {
+    padding: 4rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 機能カードのスタイル */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature-card {
+    background: rgba(1, 34, 61, 0.3);
+    padding: 2rem;
+    border-radius: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* 技術スタックのスタイル */
+.tech-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.tech-item {
+    background: rgba(1, 34, 61, 0.3);
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+
+.tech-item ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.tech-item li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.tech-item li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
+
+/* デモセクションのスタイル */
+.demo-container {
+    margin-top: 2rem;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.demo-video {
+    width: 100%;
+    border-radius: 1rem;
+}
+
+/* タイムラインのスタイル */
+.timeline {
+    margin-top: 2rem;
+    position: relative;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background: var(--accent);
+}
+
+.timeline-item {
+    padding-left: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    .project-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tech-list {
+        grid-template-columns: 1fr;
+    }
+} 
